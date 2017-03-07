@@ -1,4 +1,4 @@
-import { RECEIVE_TODOS, RECEIVE_TODO } from "../actions/todo_actions";
+import { RECEIVE_TODOS, RECEIVE_TODO, REMOVE_TODO } from "../actions/todo_actions";
 import merge from 'lodash/merge';
 import {uniqueId} from '../utils/util.js';
 
@@ -28,6 +28,10 @@ const todosReducer = (state = initialState, action) => {
       action.todo.id = uniqueId();
       console.log(action);
       nextState = merge({}, state, {[action.todo.id]: action.todo});
+      return nextState;
+    case REMOVE_TODO:
+      nextState = merge({}, state);
+      delete nextState[[action.todo.id]];
       return nextState;
     default:
       return state;
