@@ -8,7 +8,7 @@ export const TodoList = (state)=>{
     <div>
     <ul>
       {state.todos.map((todo) => (
-        <TodoListItem todo = {todo} key = {todo.id} removeTodo = {state.removeTodo}/>
+        <TodoListItem todo = {todo} key = {todo.id} removeTodo = {state.removeTodo} receiveTodo = {state.receiveTodo}/>
       ))}
     </ul>
     <TodoForm receiveTodo = {state.receiveTodo}/>

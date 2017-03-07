@@ -1,4 +1,5 @@
 import React from "react";
+import {uniqueId} from '../../utils/util.js';
 
 class TodoForm extends React.Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class TodoForm extends React.Component {
 
   submitForm(e){
     e.preventDefault;
-
+    this.setState({id: uniqueId()});
     this.props.receiveTodo(this.state);
   }
 
