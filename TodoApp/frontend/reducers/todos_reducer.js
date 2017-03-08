@@ -17,19 +17,26 @@ const initialState = {
   },
 };
 
-const todosReducer = (state = initialState, action) => {
-  let nextState = null;
+const todosReducer = (state = {}, action) => {
+  // debugger
+  Object.freeze(state);
+  let nextState;
   switch(action.type) {
     case RECEIVE_TODOS:
       // nextState = merge({}, state, action.todos);
-      nextState = merge({}, action.todos);
+      // nextState = merge({}, action.todos);
+      nextState = {};
+      action.todos.forEach(todo => (nextState[todo.id] = todo));
       return nextState;
     case RECEIVE_TODO:
+      // debugger
       nextState = merge({}, state, {[action.todo.id]: action.todo});
       return nextState;
     case REMOVE_TODO:
+    console.log("Hit Remove Todo");
+    // debugger
       nextState = merge({}, state);
-      delete nextState[[action.todo.id]];
+      delete nextState[action.todo.id];
       return nextState;
     default:
       return state;

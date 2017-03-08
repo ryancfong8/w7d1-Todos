@@ -4,7 +4,7 @@ import {uniqueId} from '../../utils/util.js';
 class TodoForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { id: "", title: "", body: "", done: false};
+    this.state = { title: "", body: "", done: false};
     this.setTitle = this.setTitle.bind(this);
     this.setBody = this.setBody.bind(this);
     this.submitForm = this.submitForm.bind(this);
@@ -22,8 +22,10 @@ class TodoForm extends React.Component {
 
   submitForm(e){
     e.preventDefault;
-    this.setState({id: uniqueId()});
-    this.props.receiveTodo(this.state);
+    // this.setState({id: uniqueId()});
+    this.props.createTodo(this.state).then(
+      () => this.setState({ title: "", body: "" })
+    );
   }
 
   render(){
@@ -31,6 +33,7 @@ class TodoForm extends React.Component {
     const { title, body } = this.state;
     return (
     <div>
+      <h3>{this.props.errors}</h3>
     <label>Title
       <input onChange = {this.setTitle} value= {title} />
     </label>

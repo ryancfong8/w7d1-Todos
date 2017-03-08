@@ -11,7 +11,7 @@ class TodoListItem extends React.Component {
 
   deleteItem(e){
     e.preventDefault;
-    this.props.removeTodo(this.props.todo);
+    this.props.deleteTodo(this.props.todo);
   }
 
   toggleDone(e) {
@@ -22,7 +22,7 @@ class TodoListItem extends React.Component {
       { done: !this.props.todo.done }
     );
 
-     this.props.receiveTodo(toggledTodo);
+     this.props.updateTodo(toggledTodo);
   }
 
   setButton(){
